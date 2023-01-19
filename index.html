@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="smart-forms1.css">
+    <link rel="stylesheet" href="css/smart-themes/yellow.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/additional-methods.min.js"></script>
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Portfolio Section Start -->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">WELCOME TO AASTHA REAL ESTATE!</h1>
+            <p>Discover Your New Home || Helping 10 million renters find their perfect fit!</p>
+            <div class="work-list">
+
+                <div class="work">
+                    <img src="come.jpg">
+                    <div class="layer">
+                        <h2>Property No-100 || Aastha Phase-6</h2>
+                        <p>New Town Kolkata || 4,5 BHK flats || Rs.4 Cr onwards || 1225 sqft!</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="home.jpeg">
+                    <div class="layer">
+                        <h2>Property No-103 || Elevate Phase-1</h2>
+                        <p>East Mumbai || 2,3 BHK flats || Rs.1.5 Cr onwards || 1125 sqft!</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="villa.jpg">
+                    <div class="layer">
+                        <h2>Property No-105 || Awashthi Phase-2</h2>
+                        <p>Uttam Nagar, New Delhi || 1 BHK flats || Rs.55 Lacs onwards || 690 sqft!</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Portfolio Section end -->
+
+
+
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function ($) {
+
+            /* @telephone number masking 
+            ---------------------------------- */
+            $("#guestelephone").mask('(999) 999-999999', { placeholder: 'X' });
+
+            /* @ date range datepicker 
+            ---------------------------------- */
+            $("#checkin").datepicker({
+                defaultDate: "+1w",
+                changeMonth: false,
+                numberOfMonths: 1,
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                onClose: function (selectedDate) {
+                    $("#checkout").datepicker("option", "minDate", selectedDate);
+                }
+            });
+
+            $("#checkout").datepicker({
+                defaultDate: "+1w",
+                changeMonth: false,
+                numberOfMonths: 1,
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                onClose: function (selectedDate) {
+                    $("#checkin").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+
+            /* @ validation and submition
+            ---------------------------------- */
+            $("#smart-form").validate({
+
+                errorClass: "state-error",
+                validClass: "state-success",
+                errorElement: "em",
+                rules: {
+                    guestname: {
+                        required: true
+                    },
+                    guestemail: {
+                        required: true,
+                        email: true
+                    },
+                    adults: {
+                        required: true,
+                        number: true
+                    },
+                    children: {
+                        required: true,
+                        number: true
+                    },
+                    checkin: {
+                        required: true
+                    },
+                    checkout: {
+                        required: true
+                    },
+                    comment: {
+                        required: true
+                    }
+                },
+                messages: {
+                    guestname: {
+                        required: 'Enter your name'
+                    },
+                    guestemail: {
+                        required: 'Enter your email address',
+                        email: 'Enter a VALID email address'
+                    },
+                    adults: {
+                        required: 'Enter the number of adult guests',
+                        number: 'Please enter a VALID number'
+                    },
+                    children: {
+                        required: 'Confirm the number of child guests',
+                        number: 'Please enter a VALID number'
+                    },
+                    checkin: {
+                        required: 'Please select checkin date'
+                    },
+                    checkout: {
+                        required: 'Please select checkout date'
+                    },
+                    comment: {
+                        required: 'Please enter your comments'
+                    }
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest('.field').addClass(errorClass).removeClass(validClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest('.field').removeClass(errorClass).addClass(validClass);
+                },
+                errorPlacement: function (error, element) {
+                    if (element.is(":radio") || element.is(":checkbox")) {
+                        element.closest('.option-group').after(error);
+                    } else {
+                        error.insertAfter(element.parent());
+                    }
+                }
+
+            });
+
+        });
+    </script>
+    </head>
+
+    <body class="woodbg">
+
+        <div class="smart-wrap">
+            <div class="smart-forms smart-container wrap-2">
+
+                <div class="form-header header-yellow">
+                    <h2><i class="fa fa-calendar"></i> Fill this form as per your convenience. We will contanct you
+                        shortly </h2>
+                </div><!-- end .form-header section -->
+
+                <form method="post" action="/" id="smart-form" name="google-sheet">
+                    <div class="form-body theme-yellow">
+
+                        <div class="section">
+                            <label for="guestname" class="field-label">Your Names</label>
+                            <label for="guestname" class="field prepend-icon">
+                                <input type="text" name="Name" id="guestname" class="gui-input"
+                                    placeholder="Your name...">
+                                <span class="field-icon"><i class="fa fa-user"></i></span>
+                            </label>
+                        </div><!-- end section -->
+
+                        <div class="frm-row">
+                            <div class="section colm colm6">
+                                <label for="guestemail" class="field-label">Email Address</label>
+                                <label for="guestemail" class="field prepend-icon">
+                                    <input type="email" name="Email" id="guestemail" class="gui-input"
+                                        placeholder="Email address">
+                                    <span class="field-icon"><i class="fa fa-envelope"></i></span>
+                                </label>
+                            </div><!-- end section -->
+
+                            <div class="section colm colm6">
+                                <label for="guestelephone" class="field-label">Telephone /
+                                    Mobile</label>
+                                <label for="guestelephone" class="field prepend-icon">
+                                    <input type="text" name="Telephone" id="guestelephone" class="gui-input"
+                                        placeholder="Telephone / moble number">
+                                    <span class="field-icon"><i class="fa fa-phone-square"></i></span>
+                                </label>
+                            </div><!-- end section -->
+                        </div><!-- end .frm-row section -->
+
+
+
+
+
+                        <div class="inputBox">
+                            <!-- <div class="section colm colm6"> -->
+                            <select name="" id="">
+                                <option value=" " disabled selected name="Choose Floors">Choose Floors</option>
+
+                                <option value="1st floor">1st floor</option>
+                                <option value="2nd floor">2nd floor</option>
+                                <option value="3rd floor">3rd floor</option>
+                                <option value="4th floor">4th floor</option>
+                                <option value="5th floor">5th floor</option>
+                                <option value="6th floor">1st floor</option>
+                                <option value="7th floor">2nd floor</option>
+                                <option value="8th floor">3rd floor</option>
+                                <option value="9th floor">4th floor</option>
+                                <option value="10th floor">5th floor</option>
+                            </select>
+                        </div>
+
+
+
+
+                        <div class="section colm colm6">
+                            <label for="children" class="field-label">Enter your Convenient Property(in sqft)</label>
+                            <label for="children" class="field prepend-icon">
+                                <input type="text" id="children" name="Property(in sqft)" class="gui-input"
+                                    placeholder="(in sqft)">
+                                <!-- <span class="field-icon"><i class="fa fa-female"></i></span> -->
+                            </label>
+                        </div>
+                    </div><!-- end .frm-row section -->
+
+
+
+                    <div class="smart-wrap">
+                        <div class="smart-forms smart-container wrap-2">
+
+                            <div class="form-header header-yellow">
+                                <h2><i class="fa fa-pencil-square"></i> Choose as per your convenience </h2>
+                            </div><!-- end .form-header section -->
+
+                            <!-- <form method="post" action="/" id="account2"> -->
+                            <div class="form-body theme-yellow">
+                                <div class="section">
+                                    <div class="option-group field">
+                                        <div class="smart-option-group">
+
+                                            <label for="city1" class="option">
+                                                <input type="radio" id="city1" name="City">
+                                                <span class="smart-option smart-radio">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i>
+                                                        Kolkata
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                            <label for="city2" class="option">
+                                                <input type="radio" id="city2" name="City">
+                                                <span class="smart-option smart-radio">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i>
+                                                        Mumbai
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                            <label for="city3" class="option">
+                                                <input type="radio" id="city3" name="City">
+                                                <span class="smart-option smart-radio">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i> New
+
+                                                        Delhi </span>
+                                                </span>
+                                            </label>
+
+                                            <label for="city4" class="option">
+                                                <input type="radio" id="city4" name="City">
+                                                <span class="smart-option smart-radio">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i>
+                                                        Patna
+                                                    </span>
+                                                </span>
+                                            </label>
+
+
+
+
+
+
+
+                                        </div><!--  smart-option-group -->
+                                    </div><!-- end .option-group section -->
+                                </div><!-- end section -->
+
+
+
+
+
+                                <div class="section">
+                                    <div class="option-group field">
+                                        <div class="smart-option-group">
+
+                                            <label for="rate1" class="option">
+                                                <input type="checkbox" id="rate1" name="BHK">
+                                                <span class="smart-option  smart-checkbox">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i> 1
+                                                        BHK
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                            <label for="rate2" class="option">
+                                                <input type="checkbox" id="rate2" name="BHK">
+                                                <span class="smart-option  smart-checkbox">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i> 2
+                                                        BHK
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                            <label for="rate3" class="option">
+                                                <input type="checkbox" id="rate3" name="BHK">
+                                                <span class="smart-option  smart-checkbox">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i> 3
+                                                        BHK
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                            <label for="rate4" class="option">
+                                                <input type="checkbox" id="rate4" name="BHK">
+                                                <span class="smart-option  smart-checkbox">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i> 4
+                                                        BHK
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                            <label for="rate5" class="option">
+                                                <input type="checkbox" id="rate5" name="BHK">
+                                                <span class="smart-option  smart-checkbox">
+                                                    <span class="smart-option-ui"> <i class="iconc"></i> 5
+                                                        BHK
+                                                    </span>
+                                                </span>
+                                            </label>
+
+
+
+
+                                            <div class="section">
+                                                <label for="comment" class="field-label">
+                                                </label>
+                                                <label for="comment" class="field prepend-icon">
+                                                    <textarea class="gui-textarea" id="comment" name="Comment"
+                                                        placeholder="If you have any query then please text here"></textarea>
+                                                    <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                                    <span class="input-hint">
+                                                        <strong>Please:</strong> Be as descriptive as
+                                                        possible
+                                                    </span>
+                                                </label>
+                                            </div><!-- end section -->
+
+
+
+
+
+
+
+                                            <div class="form-footer">
+                                                <!-- <button type="submit" class="button btn-yellow"> Submit
+                                                        Booking
+                                                    </button> -->
+                                                <input type="submit" value="submit" class="btn">
+                                                <!-- <a href="#" class="btn1" name="submit">Submit</a> -->
+
+                                                <!-- <button type="reset" class="button"> Cancel </button> -->
+                                            </div><!-- end .form-footer section -->
+                </form>
+
+            </div><!-- end .smart-forms section -->
+        </div><!-- end .smart-wrap section -->
+
+
+
+
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbw95aYEUNm_f-e1MUv7hm01ZZf4Qwq4OwQykL5rGLt1Wl8kxXS79xoEA80HqQK_cWRYrw/exec'
+            const form = document.forms['google-sheet']
+
+            form.addEventListener('submit', e => {
+                e.preventDefault()
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                    .catch(error => console.error('Error!', error.message))
+            })
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+
+</html>
